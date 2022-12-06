@@ -17,5 +17,6 @@ err_test <- mean(abs(pred_test - test_data$Ionisationsfaktor))
 err_test
 #1.606672
 
+#Visualisierung
 plot(pred_test,test_data$Ionisationsfaktor)
-
+points(c(0,40),c(0,40),lwd=2,col="red",type="l")

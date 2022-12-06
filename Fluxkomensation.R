@@ -17,5 +17,7 @@ err_test <- mean(abs(pred_test - test_data$Fluxkomensation))
 err_test
 #1.620384
 
+#Visualisierung
 plot(pred_test,test_data$Fluxkomensation)
 
+points(c(300,1000),c(300,1000), col="red", type="l",lwd=2)
