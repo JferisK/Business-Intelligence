@@ -47,8 +47,8 @@ mean(abs(baseline-test_data$Qualitaet))
 
 
 #      TESTEN
-#testen auf abhänigkeit von Durchmesser 
-#-> keine Abhänigkeit erkennbar
+#testen auf abhängigkeit von Durchmesser 
+#-> keine Abhängigkeit erkennbar
 plot(big4$Durchmesser, big4$Qualitaet)
 
 #testen auf abhänigkeit von Gewicht
