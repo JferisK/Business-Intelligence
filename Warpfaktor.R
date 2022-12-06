@@ -1,6 +1,6 @@
 library(readr)
 
-data <- read_csv("c:/Data/SmartBuild.csv")
+data <- read_csv("SmartBuild.csv")
 
 # Aufteilung von Test- und Trainingsdaten
 set.seed(42)
@@ -23,7 +23,7 @@ res_g <- predict(model_g, test_data)
 
 # Error berechnen
 err <- mean(abs(res_g-test_data$Warpfaktor))
-cat("Trainerror: ", err)
+cat("Testerror: ", err)
 
 baseError <- mean(abs(mean(train_data$Warpfaktor) - test_data$Warpfaktor))
 cat("Baselineerror: ", baseError)

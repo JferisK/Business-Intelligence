@@ -1,6 +1,6 @@
 library(readr)
 library(party)
-data = read_csv("c:/Data/SmartBuild.csv")
+data = read_csv("SmartBuild.csv")
 
 #XKlasse in Factor umwandeln
 data$XKlasse <- as.factor(data$XKlasse)
