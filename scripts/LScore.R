@@ -1,11 +1,4 @@
 #LScore
-source("scripts/LoadLibraries.R")
-loadLibraries()
-source("scripts/LoadData.R")
-loadData()
-
-
-
 
 model_LScore <- ctree(LScore~ Gewicht + Durchmesser + Hoehe,data=train_data)
 res_test <- predict(model_LScore,test_data)

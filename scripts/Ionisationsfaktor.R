@@ -1,18 +1,46 @@
-#LScore
-source("scripts/LoadData.R")
-source("scripts/LoadLibraries.R")
-loadData()
-loadLibraries()
+#Ionisationsfaktor
 
 #mit polynom 3 bestes Ergebnis bisher
-flux_model <- lm(Ionisationsfaktor~poly(Hoehe,3,raw = T)+Gewicht+Durchmesser,train_data)
+pol_model <- lm(Ionisationsfaktor~poly(Hoehe,3,raw = T)+Gewicht+Durchmesser,train_data)
+li_model <- lm(Ionisationsfaktor~Hoehe+Gewicht+Durchmesser,train_data)
 
-pred_test <- predict(flux_model,test_data)
+pol_pred_test <- predict(pol_model,test_data)
+li_pred_test <- predict(li_model,test_data)
 
-err_test <- mean(abs(pred_test - test_data$Ionisationsfaktor))
-err_test
+
+pol_err_test <- mean(abs(pol_pred_test - test_data$Ionisationsfaktor))
+pol_err_test
 #1.606672
 
+li_err_test <- mean(abs(li_pred_test - test_data$Ionisationsfaktor))
+li_err_test
+#1.608022
+
+base_err_test <- mean(abs(mean(train_data$Ionisationsfaktor)- test_data$Ionisationsfaktor))
+base_err_test
+#2.335094
+
 #Visualisierung
-plot(pred_test,test_data$Ionisationsfaktor)
-points(c(0,40),c(0,40),lwd=2,col="red",type="l")
+plot(test_data$Ionisationsfaktor,
+     pol_pred_test,
+     xlab ="Ionisationsfaktor",
+     ylab = "Vorhergesagter Ionisationsfaktor",
+     col=orange,
+     cex=1)
+
+points(seq(0,40),
+       lwd=2,
+       col=lineColor,
+       type="l")
+
+plot(train_data$Hoehe,
+     train_data$Ionisationsfaktor,
+     col = orange, 
+     xlab = "Höhe", 
+     ylab = "Ionisationsfaktor", 
+     cex = 1)
+
+points(test_data$Hoehe, 
+       pol_pred_test, 
+       col = lineColor, 
+       lwd = 1)
