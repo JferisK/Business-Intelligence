@@ -2,7 +2,7 @@
 library("readr")
 library("party")
 library("rgl")
-data<- read_csv("c:\\data\\DatenAufgabe1.csv")
+#data<- read_csv("c:\\data\\DatenAufgabe1.csv")
 data$Fehler <- as.factor(data$Fehler)
 data$XKlasse <- as.factor(data$XKlasse)
 data$LScore <- as.factor(data$LScore)

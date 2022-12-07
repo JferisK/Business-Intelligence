@@ -2,7 +2,7 @@ set.seed(42)
 library("readr")
 library("party")
 library("rgl")
-data<- read_csv("c:\\data\\DatenAufgabe1.csv")
+#data<- read_csv("c:\\data\\DatenAufgabe1.csv")
 data$Fehler <- as.factor(data$Fehler)
 data$XKlasse <- as.factor(data$XKlasse)
 data$LScore <- as.factor(data$LScore)
@@ -17,7 +17,7 @@ train_data <- data[index,]
 test_data <- data[-index,]
 
 
-treeModel <- ctree(as.factor(Ausschuss) ~ Gewicht+Hoehe+Durchmesser, train_data)
+treeModel <- ctree(Ausschuss ~ Gewicht+Hoehe+Durchmesser, train_data)
 plot(treeModel)
 
 

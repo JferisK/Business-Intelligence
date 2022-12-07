@@ -34,3 +34,5 @@ accuracy
 # 0.786
 
 plot(treeModel)
+
+# Im Baum nach Höhe schauen
