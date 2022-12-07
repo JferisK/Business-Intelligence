@@ -9,6 +9,10 @@ main <- function(){
   source("config/LoadData.R")
   loadData()
   
+  #Farben laden
+  source("config/Colors.R")
+  loadColors()
+  
   print("------Finish Inizialisation------")
   
 }
