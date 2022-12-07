@@ -1,20 +1,45 @@
 #LScore
-source("scripts/LoadData.R")
-loadLibraries()
-source("scripts/LoadLibraries.R")
-loadData()
-
 
 #mit polynom5 bestes Ergebnis bisher
-flux_model <- lm(Fluxkomensation~Gewicht+poly(Hoehe, 5, raw=T),train_data)
+pol_model <- lm(Fluxkomensation~Gewicht+poly(Hoehe, 5, raw=T),train_data)
+li_model <- lm(Fluxkomensation~Gewicht+Hoehe,train_data)
 
-pred_test <- predict(flux_model,test_data)
+pol_pred_test <- predict(pol_model,test_data)
+li_pred_test <- predict(li_model,test_data)
 
-err_test <- mean(abs(pred_test - test_data$Fluxkomensation))
-err_test
+pol_err_test <- mean(abs(pol_pred_test - test_data$Fluxkomensation))
+pol_err_test
 #1.620384
 
-#Visualisierung
-plot(pred_test,test_data$Fluxkomensation)
+li_err_test <- mean(abs(li_pred_test - test_data$Fluxkomensation))
+li_err_test
+#4.340584
 
-points(c(300,1000),c(300,1000), col="red", type="l",lwd=2)
+base_err_test <- mean(abs(mean(train_data$Fluxkomensation)- test_data$Fluxkomensation))
+base_err_test
+#80.53151
+
+#Visualisierung
+plot(test_data$Fluxkomensation,
+     pol_pred_test,
+     xlab ="Fluxkomensation",
+     ylab = "Vorhergesagter Fluxkomensation",
+     col=orange,
+     cex=1)
+
+points(seq(0,1000),
+       lwd=2,
+       col=lineColor,
+       type="l")
+
+plot(train_data$Hoehe,
+     train_data$Fluxkomensation,
+     col = orange, 
+     xlab = "Höhe", 
+     ylab = "Fluxkomensation", 
+     cex = 1)
+
+points(test_data$Hoehe, 
+       pol_pred_test, 
+       col = lineColor, 
+       lwd = 1)
