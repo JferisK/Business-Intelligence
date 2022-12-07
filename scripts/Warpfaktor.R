@@ -1,12 +1,3 @@
-library(readr)
-
-data <- read_csv("SmartBuild.csv")
-
-# Aufteilung von Test- und Trainingsdaten
-set.seed(42)
-train_index <- sample(1:nrow(data), nrow(data)*0.8)
-train_data <- data[train_index,]
-test_data <- data[-train_index,]
 
 # Visulaisierung zur Übersicht
 plot(train_data$Gewicht, xlab="Gewicht", train_data$Warpfaktor, ylab = "Warpfaktor")
@@ -33,6 +24,17 @@ cat("Baselineerror: ", baseError)
 plot(x=test_data$Warpfaktor, xlab="Warpfaktor",
      y=res_g, ylab="Vorhergesagter Warpfaktor")
 points(seq(0, 500), col=rgb(1,0,0,1), type="l")
+
+
+
+
+
+
+
+
+
+
+
 
 
 
