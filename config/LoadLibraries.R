@@ -5,7 +5,15 @@ loadLibraries <- function(){
   
   #Durch Pakete iteriern und aktivieren
   for (l in libraries){
-    library(l,character.only = TRUE)
+    print(paste("Checking package:", l))
+    
+    if (system.file(package=l) == ""){
+      print(paste("Installing package:", l))
+      install.packages(l)
+    } else {
+      print(paste("Load package:", l))
+      library(l,character.only = TRUE)
+    }
   }
 }
 loadLibraries()
