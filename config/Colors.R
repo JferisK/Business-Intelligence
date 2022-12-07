@@ -5,7 +5,10 @@ loadColors <- function(){
   lineColor <<- "#0000FF"
   
   #transparenter Hindergrund (für die PP)
-  par(bg=NA)
+  par(bg=NA,
+      pch=20,
+      cex=0.7)
+
 
   
 }
