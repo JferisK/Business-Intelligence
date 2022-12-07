@@ -1,8 +1,9 @@
 #LScore
 source("scripts/LoadData.R")
+loadLibraries()
 source("scripts/LoadLibraries.R")
 loadData()
-loadLibraries()
+
 
 #mit polynom5 bestes Ergebnis bisher
 flux_model <- lm(Fluxkomensation~Gewicht+poly(Hoehe, 5, raw=T),train_data)

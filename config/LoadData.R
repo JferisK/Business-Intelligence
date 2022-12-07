@@ -14,7 +14,8 @@ loadData <- function(ran_seed =42, train_split=0.8){
   set.seed(ran_seed)
   index <- sample(1:nrow(data),nrow(data)*train_split)
   
-  complete_data <<- data[,]
+  #Variablen Global deklarieren
+  data <<- data
   train_data <<- data[index,]
   test_data <<- data[-index,]
 }

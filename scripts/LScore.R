@@ -1,8 +1,9 @@
 #LScore
-source("scripts/LoadData.R")
 source("scripts/LoadLibraries.R")
-loadData()
 loadLibraries()
+source("scripts/LoadData.R")
+loadData()
+
 
 
 
