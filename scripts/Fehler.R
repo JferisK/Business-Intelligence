@@ -13,7 +13,7 @@ data$Ausschuss <- ifelse(data$Fehler == "Ausschuss", "Ja", "Nein")
 data$Fehler <- as.factor(data$Fehler)
 data <- data.frame(data)
 #Trainings und Testdaten splitten
-index <- sample(1:nrow(data),size = (nrow(big4)*0.8))
+index <- sample(1:nrow(data),size = (nrow(data)*0.8))
 train_data <- data[index,]
 test_data <- data[-index,]
 
@@ -26,7 +26,11 @@ results <- predict(treeModel, test_data)
 
 
 table(pred = results, real = test_data$Fehler)
-
+                            #real
+#pred                        Ausschuss Fehler im Toleranzbereich nein
+#Ausschuss                       775                       204  188
+#im Toleranzbereich                0                         0    0
+#nein                             27                         9  797
 
 
 accuracy <- mean(results == test_data$Fehler)

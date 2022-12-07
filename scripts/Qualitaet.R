@@ -24,19 +24,22 @@ qualitaet <- test_data$Qualitaet
 
 
 #Visualisierung
-plot(x=qualitaet,xlab=" Quali", y=pred_test, ylab="Vorhergesagte Quali", col="red")
-points(seq(1.0, 2.0), col="blue", type="l")
+plot(x=qualitaet,xlab=" Quali", y=pred_test, ylab="Vorhergesagte Quali", col=orange, pch= 20, cex=0.7)
+points(seq(1.0, 2.0), col= lineColor, type="l")
+
+plot(x=qualitaet,xlab=" Quali", y=pred_test, ylab="Vorhergesagte Quali", col=orange)
+points(seq(1.0, 2.0), col= lineColor, type="l")
 
 
 #test error
-#2,1% sieht gut aus
+#0,021 sieht gut aus
 pred_test <- predict(model, test_data)
 mean(abs(pred_test - test_data$Qualitaet))
 
 #train error
 #unterschied zwischen test- und trainingsdaten sehr gering was gut ist
 pred_train<- predict(model,train_data)
-mean(abs(pred_train - train_data$Qualitaet))
+mean(abs(pred_test - train_data$Qualitaet))
 
 #baseline error
 #keine Option

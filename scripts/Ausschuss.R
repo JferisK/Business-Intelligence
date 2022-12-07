@@ -32,3 +32,17 @@ table(pred = predictions, real = test_data$Ausschuss)
 mean(predictions == test_data$Ausschuss)
 # 78.85%
 
+#TESTEN AUF ZUSAMMENHANG MIT GEWICHT AUSGELSEN AUS TREE
+
+
+
+Ausschuss_data = data$Gewicht >= 249.942 & data$Gewicht <= 299.95
+Ausschuss_data = data[Ausschuss_data,]
+summary(Ausschuss_data$Ausschuss)
+
+Ausschuss_predictions <- predict(treeModel, Ausschuss_data)
+mean(Ausschuss_predictions == Ausschuss_data$Ausschuss)
+
+table(pred = Ausschuss_predictions, real = Ausschuss_data$Ausschuss)
+
+View(data)

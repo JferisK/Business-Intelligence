@@ -7,7 +7,7 @@ data$XKlasse <- as.factor(data$XKlasse)
 data$LScore <- as.factor(data$LScore)
 
 #Ab x und größer zählt ein Teil als qualitativ
-x<- 1.8
+x<- 1.7
 
 
 data$qualitativ <- ifelse(data$Qualitaet >= x, "Ja", "Nein")
@@ -25,15 +25,3 @@ predict <- predict(treeModel, test_data)
 
 table(pred = predict, real = test_data$qualitativ)
 mean(predict==test_data$qualitativ)
-
-
-
-
-model <- lm(Qualitaet~Durchmesser+Hoehe+Gewicht, train_data)
-pred_test <- predict(model, test_data)
-qualitaet <- test_data$Qualitaet
-
-#Visualisierung
-
-plot(x=qualitaet,xlab=" Quali", y=pred_test, ylab="Vorhergesagte Quali", col=orange, )
-points(seq(1.0, 2.0), col= lineColor, type="l")
