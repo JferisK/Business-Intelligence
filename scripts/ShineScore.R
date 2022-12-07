@@ -1,7 +1,7 @@
 library(readr)
 
 set.seed(42)
-data <- read_csv("SmartBuild.csv")
+data <- read_csv("data/SmartBuild.csv")
 
 # Daten aufteilen in 80/20 Verteilung
 index       <- sample(1:nrow(data),size = (nrow(data)*0.8))

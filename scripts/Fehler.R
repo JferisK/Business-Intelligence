@@ -2,7 +2,7 @@ set.seed(42)
 library("readr")
 library("party")
 library("rgl")
-data<- read_csv("c:\\data\\DatenAufgabe1.csv")
+data <- read_csv("data/SmartBuild.csv")
 data$Fehler <- as.factor(data$Fehler)
 data$XKlasse <- as.factor(data$XKlasse)
 data$LScore <- as.factor(data$LScore)
@@ -24,7 +24,8 @@ treeModel <- ctree(Fehler ~Hoehe+Durchmesser+Gewicht, train_data)
 results <- predict(treeModel, test_data)
 #Evaluieren und prüfen Sie Ihre Erlebnisse
 
-table(pred = predict, real = test_data$Fehler)
+
+table(pred = results, real = test_data$Fehler)
 
 
 
@@ -33,3 +34,5 @@ accuracy
 # 0.786
 
 plot(treeModel)
+
+# Im Baum nach Höhe schauen
