@@ -8,7 +8,7 @@ res <- predict(Dec_Tree, test_data)
 table(Vohergesagt = res, Tatsächlich=test_data$XKlasse)
 
 #            Tatsächlich
-#Vohergesagt   I  II III  IV
+#Vorhergesagt   I  II III  IV
 #I           273 295 290 301
 #II            0   0   0   0
 #III           0   0   0   0
@@ -16,4 +16,4 @@ table(Vohergesagt = res, Tatsächlich=test_data$XKlasse)
 
 # Genauigkeit berechnen
 accurancy = sum(test_data$XKlasse==res)/nrow(test_data) * 100
-cat("Genauigkeit:",accurancy)
+cat("Genauigkeit:",accurancy,"%")

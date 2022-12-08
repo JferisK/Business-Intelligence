@@ -1,6 +1,6 @@
 
 # Visulaisierung zur Übersicht
-plot(train_data$Gewicht, xlab="Gewicht", train_data$Warpfaktor, ylab = "Warpfaktor")
+plot(train_data$Gewicht, xlab="Gewicht", train_data$Warpfaktor, ylab = "Warpfaktor", col=orange)
 
 
 # minimal besseres Ergebnis mit Polynom 10. Grades
@@ -22,8 +22,8 @@ cat("Baselineerror: ", baseError)
 
 # Visualisierung
 plot(x=test_data$Warpfaktor, xlab="Warpfaktor",
-     y=res_g, ylab="Vorhergesagter Warpfaktor")
-points(seq(0, 500), col=rgb(1,0,0,1), type="l")
+     y=res_g, ylab="Vorhergesagter Warpfaktor", col=orange)
+points(seq(0, 500), col=lineColor, type="l")
 
 
 
