@@ -1,30 +1,18 @@
-library("readr")
-library("party")
-library("rgl")
-#data<- read_csv("c:\\data\\DatenAufgabe1.csv")
-data$Fehler <- as.factor(data$Fehler)
-data$XKlasse <- as.factor(data$XKlasse)
-data$LScore <- as.factor(data$LScore)
-
-
-
-
-#Trainings und Testdaten splitten
-index <- sample(1:nrow(data),size = (nrow(big4)*0.8))
-train_data <- data[index,]
-test_data <- data[-index,]
-
+#Farbreinheit
 
 #predict
-model <- lm(Farbreinheit~Durchmesser+Hoehe+Gewicht, train_data)
-pred_test <- predict(model, test_data)
+model_Farbreinheit <- lm(Farbreinheit~Durchmesser+Hoehe+Gewicht, train_data)
+pred_test <- predict(model_Farbreinheit, test_data)
 farbreinheit <- test_data$Farbreinheit
 
 
 #Visualisierung
-plot(x=farbreinheit,xlab="Farbreinheit", y=pred_test, ylab="Vorhergesagte Farbreinheit", col="red")
-points(seq(1.0, 2.0), col= lineColor, type="l")
+plot(x=farbreinheit,xlab="Farbreinheit", y=pred_test, ylab="Vorhergesagte Farbreinheit", col="red",cex=1,pch=20)
+points(seq(0, 1), col= lineColor, type="l")
 
+plot(x=farbreinheit,xlab="Farbreinheit", y=pred_test, ylab="Vorhergesagte Farbreinheit", col="red",cex=1,pch=20)
+
+accuracy_all <- sum(farbreinheit == pred_test)/nrow(test_data)
 
 # ToDo Mean Error
 
@@ -33,7 +21,7 @@ points(seq(1.0, 2.0), col= lineColor, type="l")
 #      TESTEN
 #testen auf abhängigkeit von Durchmesser 
 #-> keine Abhängigkeit erkennbar
-plot(x=data$Durchmesser,xlab="Durchmesser",y=data$Farbreinheit,ylab="Farbreinheit", col=red)
+plot(x=full_data$Durchmesser,xlab="Durchmesser",y=full_data$Farbreinheit,ylab="Farbreinheit", col=red, cex=1, pch=20)
 
 #testen auf abhänigkeit von Gewicht
 #-> je mehr Gewicht desto schlechter aber zu starke Streuung
