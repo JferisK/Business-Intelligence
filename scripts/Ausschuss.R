@@ -32,7 +32,6 @@ plot(model_Ausschuss)
 #TESTEN AUF ZUSAMMENHANG MIT GEWICHT AUSGELSEN AUS TREE
 Ausschuss_data = data_aus$Gewicht >= 249.942 & data_aus$Gewicht <= 299.95
 Ausschuss_data = data_aus[Ausschuss_data,]
-#summary(Ausschuss_data$Ausschuss)
 
 predict_mit_gewicht <- predict(model_Ausschuss, Ausschuss_data)
 
