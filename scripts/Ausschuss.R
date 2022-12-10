@@ -1,48 +1,49 @@
 set.seed(42)
-library("readr")
-library("party")
-library("rgl")
-#data<- read_csv("c:\\data\\DatenAufgabe1.csv")
-data$Fehler <- as.factor(data$Fehler)
-data$XKlasse <- as.factor(data$XKlasse)
-data$LScore <- as.factor(data$LScore)
 
-data$Ausschuss <- ifelse(data$Fehler == "Ausschuss", "Ja", "Nein")
-data$Ausschuss <- as.factor(data$Ausschuss)
+#Dataframe kopieren
+data_aus <- data.frame(full_data)
 
-data <- data.frame(data)
+#spalte Ausschuss hinzufügen
+data_aus$Ausschuss <- ifelse(data_aus$Fehler == "Ausschuss", "Ja", "Nein")
+data_aus$Ausschuss <- as.factor(data_aus$Ausschuss)
+
 #Trainings und Testdaten splitten
-index <- sample(1:nrow(data),size = (nrow(big4)*0.8))
-train_data <- data[index,]
-test_data <- data[-index,]
+index_aus<- sample(1:nrow(data_aus), (nrow(data_aus)*0.8))
+train_data_aus <- data_aus[index_aus,]
+test_data_aus <- data_aus[-index_aus,]
+
+# Evaluation der Trainingsdaten
+model_Ausschuss <- ctree(Ausschuss~Hoehe+Durchmesser+Gewicht, train_data_aus)
+predict <- predict(model_Ausschuss, test_data_aus)
+table(pred = predict, real = test_data_aus$Ausschuss)
 
 
-treeModel <- ctree(Ausschuss ~ Gewicht+Hoehe+Durchmesser, train_data)
-plot(treeModel)
+#Genauigkeit berechnen
+genauigkeit = mean(predict==test_data_aus$Ausschuss)
+cat("Genauigkeit:",genauigkeit*100,"%")
 
 
-predictions <- predict(treeModel, test_data)
 
-table(pred = predictions, real = test_data$Ausschuss)
-#      real
-# pred    Ja   Nein
-# Ja      692  313
-# Nein    110  885
 
-mean(predictions == test_data$Ausschuss)
-# 78.85%
+
+#Ausschuss Baum visualisieren
+plot(model_Ausschuss)
 
 #TESTEN AUF ZUSAMMENHANG MIT GEWICHT AUSGELSEN AUS TREE
+Ausschuss_data = data_aus$Gewicht >= 249.942 & data_aus$Gewicht <= 299.95
+Ausschuss_data = data_aus[Ausschuss_data,]
+#summary(Ausschuss_data$Ausschuss)
+
+predict_mit_gewicht <- predict(model_Ausschuss, Ausschuss_data)
+
+
+genauigkeit_noch_genauer =mean(predict_mit_gewicht == Ausschuss_data$Ausschuss)
+cat("Genauigkeit:",genauigkeit_noch_genauer*100,"%")
 
 
 
-Ausschuss_data = data$Gewicht >= 249.942 & data$Gewicht <= 299.95
-Ausschuss_data = data[Ausschuss_data,]
-summary(Ausschuss_data$Ausschuss)
 
-Ausschuss_predictions <- predict(treeModel, Ausschuss_data)
-mean(Ausschuss_predictions == Ausschuss_data$Ausschuss)
 
-table(pred = Ausschuss_predictions, real = Ausschuss_data$Ausschuss)
 
-View(data)
+
+
