@@ -1,13 +1,3 @@
-library(readr)
-
-set.seed(42)
-data <- read_csv("data/SmartBuild.csv")
-
-# Daten aufteilen in 80/20 Verteilung
-index       <- sample(1:nrow(data),size = (nrow(data)*0.8))
-train_data  <- data[index,]
-test_data   <- data[-index,]
-
 test <- data.frame(Hoehe=seq(min(test_data$Hoehe), max(test_data$Hoehe), length.out=nrow(test_data)))
 
 # Create Models
@@ -17,15 +7,14 @@ linModel <- lm(Gammawert~Hoehe, train_data)
 # Create Visualisation
 plot(train_data$Hoehe, 
      train_data$Gammawert, 
-     col = 1, 
+     col = orange, 
      xlab = "Höhe", 
-     ylab = "Gammawert", 
-     cex = 1)
-
+     ylab = "Gammawert")
+ 
 points(test$Hoehe, 
        predict(polModel, test), 
-       col = 2, 
-       lwd = 1)
+       col = lineColor, 
+       type = "l")
 
 # Evaluation
 polErr      <- mean(abs(predict(polModel, test_data) - test_data$Gammawert))
@@ -36,9 +25,9 @@ plot(x=test_data$Gammawert,
      xlab = "Gammawert", 
      y = predict(polModel, test_data), 
      ylab = "Vorhergesagter Gammawert", 
-     col = 3)
+     col = orange)
 
 
 points(seq(0, 1000), 
-       col = 2, 
+       col = lineColor, 
        type = "l")
