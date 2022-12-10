@@ -1,27 +1,29 @@
-library("readr")
-library("party")
-library("rgl")
-data<- read_csv("c:\\data\\DatenAufgabe1.csv")
-data$Fehler <- as.factor(data$Fehler)
-data$XKlasse <- as.factor(data$XKlasse)
-data$LScore <- as.factor(data$LScore)
+set.seed(42)
 
 #Ab x und größer zählt ein Teil als qualitativ
-x<- 1.7
+x<- 1.5
 
+#Dataframe kopieren
+data_qua <- data.frame(full_data)
+class(data_qua)
+data_qua <- data.frame(data_qua)
 
-data$qualitativ <- ifelse(data$Qualitaet >= x, "Ja", "Nein")
-data$qualitativ <- as.factor(data$qualitativ)
+#spalte qualitativ hinzufügen
+data_qua$qualitativ <- ifelse(data_qua$Qualitaet >= x, "Ja", "Nein")
+data_qua$qualitativ <- as.factor(data_qua$qualitativ)
 
-
-data <- data.frame(data)
 #Trainings und Testdaten splitten
-index <- sample(1:nrow(data),size = (nrow(data)*0.8))
-train_data <- data[index,]
-test_data <- data[-index,]
+index_qua<- sample(1:nrow(data_qua), (nrow(data_qua)*0.8))
+train_data_qua <- data_qua[index_qua,]
+test_data_qua <- data_qua[-index_qua,]
 
-treeModel <- ctree(qualitativ~Hoehe+Durchmesser+Gewicht, train_data)
-predict <- predict(treeModel, test_data)
 
-table(pred = predict, real = test_data$qualitativ)
-mean(predict==test_data$qualitativ)
+# Evaluation der Trainingsdaten
+model_qualitativ <- ctree(qualitativ~Hoehe+Durchmesser+Gewicht, train_data_qua)
+predict <- predict(model_qualitativ, test_data_qua)
+table(pred = predict, real = test_data_qua$qualitativ)
+
+
+#Genauigkeit berechnen
+genauigkeit = mean(predict==test_data_qua$qualitativ)
+cat("Genauigkeit:",genauigkeit*100,"%")
