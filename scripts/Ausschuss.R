@@ -38,11 +38,3 @@ predict_mit_gewicht <- predict(model_Ausschuss, Ausschuss_data)
 
 genauigkeit_noch_genauer =mean(predict_mit_gewicht == Ausschuss_data$Ausschuss)
 cat("Genauigkeit:",genauigkeit_noch_genauer*100,"%")
-
-
-
-
-
-
-
-

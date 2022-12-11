@@ -11,5 +11,5 @@ loadColors <- function(){
       cex=0.7)
 
 }
-
+loadColors()
   
