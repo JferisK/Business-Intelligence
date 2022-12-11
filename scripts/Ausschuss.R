@@ -33,8 +33,14 @@ plot(model_Ausschuss)
 Ausschuss_data = data_aus$Gewicht >= 249.942 & data_aus$Gewicht <= 299.95
 Ausschuss_data = data_aus[Ausschuss_data,]
 
-predict_mit_gewicht <- predict(model_Ausschuss, Ausschuss_data)
+summary(Ausschuss_data$Ausschuss)
+
+model_spezifiziert <- ctree(Ausschuss~Hoehe+Durchmesser+Gewicht, Ausschuss_data)
+plot(model_spezifiziert)
 
 
-genauigkeit_noch_genauer =mean(predict_mit_gewicht == Ausschuss_data$Ausschuss)
-cat("Genauigkeit:",genauigkeit_noch_genauer*100,"%")
+
+
+
+
+
