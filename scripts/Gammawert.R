@@ -9,12 +9,14 @@ plot(train_data$Hoehe,
      train_data$Gammawert, 
      col = orange, 
      xlab = "Höhe", 
-     ylab = "Gammawert")
+     ylab = "Gammawert",
+     bg = NA)
  
 points(test$Hoehe, 
        predict(polModel, test), 
        col = lineColor, 
-       type = "l")
+       type = "l",
+       bg = NA)
 
 # Evaluation
 polErr      <- mean(abs(predict(polModel, test_data) - test_data$Gammawert))
@@ -25,9 +27,11 @@ plot(x=test_data$Gammawert,
      xlab = "Gammawert", 
      y = predict(polModel, test_data), 
      ylab = "Vorhergesagter Gammawert", 
-     col = orange)
+     col = orange,
+     bg = NA)
 
 
 points(seq(0, 1000), 
        col = lineColor, 
-       type = "l")
+       type = "l",
+       bg = NA)

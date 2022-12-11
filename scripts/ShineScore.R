@@ -2,7 +2,7 @@
 train_data$Volumen  <- train_data$Hoehe * train_data$Durchmesser
 test_data$Volumen   <- test_data$Hoehe * test_data$Durchmesser
 
-# Model auf Basis Burchmesser trainieren
+# Model auf Basis Durchmesser trainieren
 model <- lm(ShineScore~Durchmesser, train_data)
 
 # Mean bilden + mit Baseline abgleichen
