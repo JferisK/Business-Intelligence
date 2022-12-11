@@ -24,8 +24,7 @@ plot(test_data$Fluxkomensation,
      pol_pred_test,
      xlab ="Fluxkomensation",
      ylab = "Vorhergesagter Fluxkomensation",
-     col=orange,
-     cex=1)
+     col=orange)
 
 points(seq(0,1000),
        lwd=2,
@@ -36,8 +35,7 @@ plot(train_data$Hoehe,
      train_data$Fluxkomensation,
      col = orange, 
      xlab = "Höhe", 
-     ylab = "Fluxkomensation", 
-     cex = 1)
+     ylab = "Fluxkomensation")
 
 points(test_data$Hoehe, 
        pol_pred_test, 

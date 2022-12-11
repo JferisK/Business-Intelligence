@@ -9,7 +9,6 @@ main <- function(){
   
   #Farben laden
   source("config/Colors.R")
-  loadColors()
   
   print("------Finish Inizialisation------")
   

@@ -1,6 +1,6 @@
 #LScore
 
-model_LScore <- ctree(LScore~ Gewicht + Durchmesser + Hoehe,data=train_data)
+model_LScore <- ctree(LScore~ Gewicht + Hoehe,data=train_data)
 res_test <- predict(model_LScore,test_data)
 
 accuracy_all <- sum(test_data$LScore == res_test)/nrow(test_data)
