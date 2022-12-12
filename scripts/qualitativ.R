@@ -1,6 +1,6 @@
 set.seed(42)
 #Ab x und größer zählt ein Teil als qualitativ
-x<- 1.7
+x<- 1.7654321
 
 #Dataframe kopieren
 data_qua <- data.frame(full_data)
@@ -20,7 +20,11 @@ test_data_qua <- data_qua[-index_qua,]
 model_qualitativ <- ctree(qualitativ~Hoehe+Durchmesser+Gewicht, train_data_qua)
 predict <- predict(model_qualitativ, test_data_qua)
 table(pred = predict, real = test_data_qua$qualitativ)
+#      real
+#pred     Ja Nein
+#Ja     76   55
+#Nein   58 1811
 
 #Genauigkeit berechnen
 genauigkeit = mean(predict==test_data_qua$qualitativ)
-cat("Genauigkeit:",genauigkeit*100,"%")
+cat("Die Genauigkeit bei einem QualitätsWert von",x,"entspricht",genauigkeit*100,"%")
