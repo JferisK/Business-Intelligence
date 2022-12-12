@@ -12,3 +12,8 @@ table(original=test_data$LScore,predicted=res_test)
 #gut      160     41       12
 #mittel     0    731       20
 #schlecht   1     61      974
+
+#Ausrechnen wie viel mittel/gut sind über 250 g
+schwer_data =full_data[full_data$Gewicht >= 249.984,]
+sum(schwer_data$LScore!="schlecht")/nrow(schwer_data)
+# 94,14% sind mittel/gut über 250g
