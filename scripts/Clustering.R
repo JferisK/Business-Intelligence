@@ -8,3 +8,5 @@ data <- data.frame(data)
 model <- kmeans(data,2)
 #Visualisierung
 plot3d(data$Durchmesser,data$Hoehe,data$Gewicht,col=model$cluster)
+
+# ->Keine sinvollen Cluster erkennbar

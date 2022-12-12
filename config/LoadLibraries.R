@@ -7,13 +7,13 @@ loadLibraries <- function(){
   for (l in libraries){
     print(paste("Checking package:", l))
     
-    # Prüfung ob Package vorhanden ist
+    #Prüfung ob Package vorhanden ist
     if (system.file(package=l) == ""){
       print(paste("Installing package:", l))
       install.packages(l)
     } 
     
-    # aktiviert package
+    #aktiviert package
     library(l,character.only = TRUE)
   }
 }

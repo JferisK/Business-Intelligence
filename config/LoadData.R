@@ -4,7 +4,7 @@ loadData <- function(ran_seed =42, train_split=0.8){
   complete_data <- read_csv("./data/SmartBuild.csv")
   
   
-  #factoren setzen
+  #Faktoren setzen
   complete_data$LScore <- as.factor(complete_data$LScore)
   complete_data$Fehler <- as.factor(complete_data$Fehler)
   complete_data$XKlasse <- as.factor(complete_data$XKlasse)

@@ -1,6 +1,6 @@
 #Fluxkomensation
 
-#mit polynom5 bestes Ergebnis bisher
+#mit polynom5 bestes Ergebnis
 pol_model <- lm(Fluxkomensation~Gewicht+poly(Hoehe, 5, raw=T),train_data)
 li_model <- lm(Fluxkomensation~Gewicht+Hoehe,train_data)
 

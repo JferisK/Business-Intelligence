@@ -1,6 +1,6 @@
 #Ionisationsfaktor
 
-#mit polynom 3 bestes Ergebnis bisher
+#mit polynom 3 bestes Ergebnis
 pol_model <- lm(Ionisationsfaktor~poly(Hoehe,3,raw = T)+Durchmesser,train_data)
 li_model <- lm(Ionisationsfaktor~Hoehe+Gewicht+Durchmesser,train_data)
 
